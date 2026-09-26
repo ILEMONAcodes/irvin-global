@@ -1,61 +1,63 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ShieldCheck, Phone, Mail, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-400 text-xs py-16 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer className="border-t border-white/10 bg-[#0B132B] py-14 text-xs text-slate-400">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-5 sm:px-8 md:grid-cols-4">
         <div className="space-y-4">
-          <Image src="/logo.png" alt="Irvin Global" width={150} height={40} className="object-contain brightness-200 invert" />
-          <p className="text-slate-400 leading-relaxed">
-            Licensed micro-credit and SME funding institution dedicated to fast digital access and physical branch excellence.
+          <Image src="/logo.png" alt="Irvin Global" width={150} height={40} className="object-contain brightness-0 invert" />
+          <p className="max-w-xs leading-6">
+            Licensed micro-credit and SME funding institution dedicated to clear digital access and personal service.
           </p>
         </div>
 
         <div>
-          <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Loan Products</h4>
-          <ul className="space-y-2.5">
-            <li><a href="/apply?product=payday" className="hover:text-white transition">Payday Salary Loan</a></li>
-            <li><a href="/apply?product=payroll" className="hover:text-white transition">Public Sector Payroll</a></li>
-            <li><a href="/apply?product=sme" className="hover:text-white transition">SME Working Capital</a></li>
-            <li><a href="/apply?product=stepup" className="hover:text-white transition">Trader Step-Up Credit</a></li>
+          <h2 className="mb-4 font-bold uppercase tracking-wider text-white">Financing</h2>
+          <ul className="space-y-3">
+            <li><Link href="/products" className="hover:text-[#D4AF37]">Payday Credit Facility</Link></li>
+            <li><Link href="/products" className="hover:text-[#D4AF37]">Payroll Credit Facility</Link></li>
+            <li><Link href="/products" className="hover:text-[#D4AF37]">Step-Up Loan</Link></li>
+            <li><Link href="/products" className="hover:text-[#D4AF37]">SME Loan</Link></li>
+            <li><Link href="/calculator" className="hover:text-[#D4AF37]">Loan calculator</Link></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Quick Navigation</h4>
-          <ul className="space-y-2.5">
-            <li><a href="/#calculator" className="hover:text-white transition">Loan Calculator</a></li>
-            <li><a href="/overview" className="hover:text-white transition">Customer Portal</a></li>
-            <li><a href="/branches" className="hover:text-white transition">Branch Network</a></li>
-            <li><a href="/investments" className="hover:text-white transition">Fixed Deposits</a></li>
+          <h2 className="mb-4 font-bold uppercase tracking-wider text-white">Explore</h2>
+          <ul className="space-y-3">
+            <li><Link href="/overview" className="hover:text-[#D4AF37]">Customer portal</Link></li>
+            <li><Link href="/branches" className="hover:text-[#D4AF37]">Branch network</Link></li>
+            <li><Link href="/products" className="hover:text-[#D4AF37]">Our services</Link></li>
+            <li><Link href="/status" className="hover:text-[#D4AF37]">Track application</Link></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-white font-bold mb-4 uppercase tracking-wider">Head Office</h4>
+          <h2 className="mb-4 font-bold uppercase tracking-wider text-white">Head office</h2>
           <ul className="space-y-3">
             <li className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#D4AF37]" />
               <span>No 33, Pope John Paul Street, off Gana Street, Maitama, Abuja</span>
             </li>
             <li className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span className="text-white font-bold">+234 907 821 6588</span>
+              <Phone className="h-4 w-4 shrink-0 text-emerald-400" />
+              <span className="font-bold text-white">+234 907 821 6588</span>
             </li>
             <li className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-amber-400 shrink-0" />
+              <Mail className="h-4 w-4 shrink-0 text-[#D4AF37]" />
               <span>info@irvinglobal.com</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 mt-12 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500">
+      <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 px-5 pt-7 text-slate-500 sm:flex-row sm:px-8">
         <p>© 2026 Irvin Global Financial Services. All rights reserved.</p>
-        <p className="flex items-center gap-1 text-slate-400 font-semibold">
-          <ShieldCheck className="w-4 h-4 text-emerald-500" /> Fully Encrypted & Regulated System
+        <p className="flex items-center gap-2 font-semibold text-slate-400">
+          <ShieldCheck className="h-4 w-4 text-emerald-500" /> Fully encrypted &amp; regulated system
         </p>
       </div>
     </footer>

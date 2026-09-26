@@ -1,80 +1,13 @@
-import React from 'react';
+'use client';
+
+import { useMemo, useState } from 'react';
+import Header from '@/components/common/Header';
+import Footer from '@/components/common/Footer';
 import { MOCK_BRANCHES } from '@/data/mockData';
-import Image from 'next/image';
-import { MapPin, Phone, Clock, ArrowRight, Building2, ShieldCheck } from 'lucide-react';
+import { MapPin, Phone, Search, ExternalLink, Clock } from 'lucide-react';
 
 export default function BranchesPage() {
-  return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      {/* Navigation */}
-      <nav className="bg-white border-b border-slate-100 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <a href="/">
-            <Image src="/logo.png" alt="Irvin Global" width={150} height={40} className="object-contain" />
-          </a>
-          <a
-            href="/apply"
-            className="bg-blue-600 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-blue-500/20 hover:bg-blue-700 transition"
-          >
-            Apply Online
-          </a>
-        </div>
-      </nav>
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold mb-4">
-            <Building2 className="w-3.5 h-3.5" /> Direct In-Person Service
-          </span>
-          <h1 className="text-3xl sm:text-4xl font-black text-slate-900">Our Physical Branch Locations</h1>
-          <p className="text-slate-600 text-sm sm:text-base mt-2">
-            Visit our office locations for personalized credit advisory, physical documentation submission, or face-to-face assistance.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8">
-          {MOCK_BRANCHES.map((branch, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-3xl p-8 border border-slate-100 shadow-xl relative overflow-hidden flex flex-col justify-between"
-            >
-              <div className="space-y-4">
-                <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center font-bold">
-                  <Building2 className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900">{branch.name}</h3>
-
-                <div className="space-y-3 pt-2 text-sm text-slate-600">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
-                    <span>{branch.address}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-emerald-600 shrink-0" />
-                    <span className="font-semibold text-slate-800">{branch.phone}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Clock className="w-5 h-5 text-amber-600 shrink-0" />
-                    <span>{branch.hours}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-8 mt-6 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-xs font-semibold text-emerald-600 flex items-center gap-1">
-                  <ShieldCheck className="w-4 h-4" /> Open for Appointments
-                </span>
-                <a
-                  href={`tel:${branch.phone}`}
-                  className="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition flex items-center gap-2"
-                >
-                  Call Branch <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
-    </div>
-  );
+  const [query, setQuery] = useState('');
+  const branches = useMemo(() => MOCK_BRANCHES.filter((branch) => `${branch.name} ${branch.address}`.toLowerCase().includes(query.toLowerCase())), [query]);
+  return <div className="min-h-screen bg-[#F8F9FA] text-slate-800"><Header /><main className="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-14"><div className="mb-8 max-w-2xl"><p className="text-xs font-bold uppercase tracking-[.16em] text-[#99751d]">Here when you need us</p><h1 className="mt-3 text-3xl font-semibold text-[#0B132B] sm:text-4xl">Irvin is closer than you think.</h1><p className="mt-3 text-sm leading-6 text-slate-600">Find a branch and speak with our team in person.</p></div><div className="grid min-h-[560px] overflow-hidden rounded-xl border border-slate-200 bg-white lg:grid-cols-[.85fr_1.15fr]"><section className="flex min-h-[540px] flex-col border-b border-slate-200 lg:border-b-0 lg:border-r"><div className="border-b border-slate-100 p-4"><label className="flex items-center gap-3 rounded-lg border border-slate-200 px-3 py-3"><Search className="h-4 w-4 shrink-0 text-slate-400" /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search city or address" className="w-full border-0 bg-transparent text-sm outline-none placeholder:text-slate-400" /></label><p className="mt-3 text-xs text-slate-500">{branches.length} branches</p></div><div className="flex-1 divide-y divide-slate-100 overflow-y-auto">{branches.map((branch) => <article key={branch.name} className="p-5 transition hover:bg-slate-50"><div className="flex gap-3"><span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#f8f4e8] text-[#99751d]"><MapPin className="h-4 w-4" /></span><div><h2 className="text-sm font-semibold text-[#0B132B]">{branch.name}</h2><p className="mt-1 text-xs leading-5 text-slate-500">{branch.address}</p><p className="mt-2 flex items-center gap-1.5 text-xs text-slate-500"><Clock className="h-3.5 w-3.5" />{branch.hours}</p><div className="mt-4 flex gap-2"><a href={`tel:${branch.phone}`} className="inline-flex items-center gap-1.5 rounded-md bg-[#0B132B] px-3 py-2 text-xs font-semibold text-white hover:bg-[#152344]"><Phone className="h-3.5 w-3.5" />Call</a><a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.address)}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-md border border-slate-200 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-white">Directions <ExternalLink className="h-3.5 w-3.5" /></a></div></div></div></article>)}{branches.length === 0 && <p className="p-6 text-sm text-slate-500">No branches match that search.</p>}</div></section><div className="relative min-h-[420px] bg-[#e8ebea]"><iframe title="Map of Irvin Global branches in Abuja" src="https://www.openstreetmap.org/export/embed.html?bbox=7.43%2C9.00%2C7.58%2C9.13&layer=mapnik" className="absolute inset-0 h-full w-full border-0" loading="lazy" /><a href="https://www.openstreetmap.org/#map=13/9.055/7.505" target="_blank" rel="noreferrer" className="absolute bottom-4 right-4 rounded-md bg-white px-3 py-2 text-xs font-semibold text-[#0B132B] shadow-sm">Open larger map <ExternalLink className="ml-1 inline h-3 w-3" /></a></div></div></main><Footer /></div>;
 }
