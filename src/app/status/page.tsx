@@ -26,15 +26,15 @@ export default function StatusTrackerPage() {
     <DashboardShell>
       <main className="mx-auto max-w-4xl px-5 py-10 sm:px-8 sm:py-14">
         <div className="mb-8">
-          <p className="text-xs font-bold uppercase tracking-[.16em] text-[#99751d]">
+          <p className="text-xs font-bold uppercase tracking-[.16em] text-blue-700 dark:text-blue-300">
             Application tracker
           </p>
-          <h1 className="mt-3 text-3xl font-semibold text-[#0B132B]">Track your application.</h1>
-          <p className="mt-2 text-sm leading-6 text-slate-600">
+          <h1 className="mt-3 text-3xl font-semibold text-[#14233c] dark:text-white">Track your application.</h1>
+          <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
             Your application progress, clearly laid out.
           </p>
         </div>
-        <form onSubmit={handleSearch} className="mb-6 flex gap-2 rounded-xl border border-slate-200 bg-white p-2 shadow-sm">
+        <form onSubmit={handleSearch} className="mb-6 flex gap-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-sm dark:border-slate-800 dark:bg-[#111b2e]">
           <label htmlFor="application-reference" className="sr-only">
             Application reference
           </label>
@@ -44,9 +44,9 @@ export default function StatusTrackerPage() {
             value={reference}
             onChange={(event) => setReference(event.target.value)}
             placeholder="Application reference"
-            className="min-w-0 flex-1 border-0 bg-transparent px-2 py-2 text-sm outline-none"
+            className="min-w-0 flex-1 border-0 bg-transparent px-2 py-2 text-sm text-[#14233c] outline-none placeholder:text-slate-400 dark:text-white"
           />
-          <button type="submit" className="rounded-lg bg-[#0B132B] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#152344]">
+          <button type="submit" className="rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700">
             Track
           </button>
         </form>
@@ -56,50 +56,50 @@ export default function StatusTrackerPage() {
           </p>
         )}
         {searched && (
-          <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7">
-            <div className="flex flex-col justify-between gap-4 border-b border-slate-100 pb-5 sm:flex-row sm:items-start">
+          <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-7 dark:border-slate-800 dark:bg-[#111b2e]">
+            <div className="flex flex-col justify-between gap-4 border-b border-slate-100 pb-5 sm:flex-row sm:items-start dark:border-slate-800">
               <div>
-                <span className="text-xs font-semibold text-[#99751d]">Application #{searched}</span>
-                <h2 className="mt-2 text-xl font-semibold text-[#0B132B]">SME Credit Facility</h2>
-                <p className="mt-1 text-sm text-slate-500">Submitted on 12 September 2026</p>
+                <span className="text-xs font-semibold text-blue-700 dark:text-blue-300">Application #{searched}</span>
+                <h2 className="mt-2 text-xl font-semibold text-[#14233c] dark:text-white">SME Credit Facility</h2>
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Submitted on 12 September 2026</p>
               </div>
-              <span className="inline-flex items-center gap-2 self-start rounded-full bg-[#FEF9C3] px-3 py-1.5 text-xs font-semibold text-[#854D0E]">
+              <span className="inline-flex items-center gap-2 self-start rounded-full bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-700 dark:bg-blue-950 dark:text-blue-300">
                 <Clock3 className="h-3.5 w-3.5" /> Credit assessment
               </span>
             </div>
             <div className="mt-7">
-              <h3 className="text-sm font-semibold text-[#0B132B]">Application progress</h3>
+              <h3 className="text-sm font-semibold text-[#14233c] dark:text-white">Application progress</h3>
               <div className="mt-5">
                 {steps.map((step, index) => (
                   <div key={step.title} className="relative flex gap-4 pb-7 last:pb-0">
                     <div className="relative flex w-6 shrink-0 justify-center">
                       {index < steps.length - 1 && (
-                        <span className={`absolute top-6 h-full w-px ${step.status === 'complete' ? 'bg-emerald-300' : 'bg-slate-200'}`} />
+                        <span className={`absolute top-6 h-full w-px ${step.status === 'complete' ? 'bg-emerald-300' : 'bg-slate-200 dark:bg-slate-700'}`} />
                       )}
                       {step.status === 'complete' ? (
                         <span className="z-10 grid h-6 w-6 place-items-center rounded-full bg-emerald-100 text-emerald-700">
                           <Check className="h-3.5 w-3.5" />
                         </span>
                       ) : step.status === 'current' ? (
-                        <span className="z-10 grid h-6 w-6 place-items-center rounded-full border-2 border-[#D4AF37] bg-[#f8f4e8]">
-                          <span className="h-2 w-2 rounded-full bg-[#99751d]" />
+                        <span className="z-10 grid h-6 w-6 place-items-center rounded-full border-2 border-blue-500 bg-blue-50 dark:bg-blue-950">
+                          <span className="h-2 w-2 rounded-full bg-blue-600" />
                         </span>
                       ) : (
-                        <Circle className="z-10 h-6 w-6 fill-white text-slate-300" />
+                        <Circle className="z-10 h-6 w-6 fill-white text-slate-300 dark:fill-[#111b2e] dark:text-slate-600" />
                       )}
                     </div>
                     <div className="flex flex-1 flex-col justify-between gap-1 sm:flex-row sm:items-center">
                       <div>
-                        <p className={`text-sm font-semibold ${step.status === 'pending' ? 'text-slate-400' : 'text-[#0B132B]'}`}>
+                        <p className={`text-sm font-semibold ${step.status === 'pending' ? 'text-slate-400' : 'text-[#14233c] dark:text-white'}`}>
                           {step.title}
                         </p>
                         {step.status === 'current' && (
-                          <p className="mt-1 text-xs text-slate-500">
+                          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
                             Our team is reviewing your application and documents.
                           </p>
                         )}
                       </div>
-                      <span className={`text-xs ${step.status === 'current' ? 'font-semibold text-[#99751d]' : 'text-slate-400'}`}>
+                      <span className={`text-xs ${step.status === 'current' ? 'font-semibold text-blue-700 dark:text-blue-300' : 'text-slate-400'}`}>
                         {step.date}
                       </span>
                     </div>

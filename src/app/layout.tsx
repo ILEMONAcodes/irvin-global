@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { ToastProvider } from '@/components/common/Toast';
+import SiteChrome from '@/components/common/SiteChrome';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={inter.variable}>
-        <ToastProvider>{children}</ToastProvider>
+        <ToastProvider>
+          <SiteChrome>{children}</SiteChrome>
+        </ToastProvider>
       </body>
     </html>
   );

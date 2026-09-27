@@ -2,18 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import Footer from '@/components/common/Footer';
 import { 
-  User, 
-  CreditCard, 
-  Briefcase, 
-  Building, 
   CheckCircle, 
   ArrowRight, 
   ArrowLeft, 
-  Lock, 
-  ShieldCheck 
 } from 'lucide-react';
 
 export default function ApplyPage() {
@@ -59,18 +52,6 @@ export default function ApplyPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col justify-between font-sans">
       <div>
-        {/* Navigation */}
-        <nav className="bg-white border-b border-slate-100 py-4 px-4 sm:px-8">
-          <div className="max-w-7xl mx-auto flex justify-between items-center">
-            <Link href="/">
-              <Image src="/logo.png" alt="Irvin Global Logo" width={140} height={40} className="object-contain" priority />
-            </Link>
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-500">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" /> CBN Regulated Micro-Credit
-            </div>
-          </div>
-        </nav>
-
         <main className="max-w-3xl mx-auto px-4 py-12">
           {!submitted ? (
             <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xl p-6 sm:p-10">
