@@ -4,11 +4,12 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, CalendarDays, Check, Clock3, CreditCard, WalletCards } from 'lucide-react';
 import { formatNaira } from '@/lib/utils';
+import { DASHBOARD_ACCOUNT } from '@/data/dashboardAccount';
 
 const paymentRows = [
-  { date: '30 Sep 2026', amount: 93750, description: 'SME Credit Facility · Monthly repayment', status: 'Due soon' },
-  { date: '30 Aug 2026', amount: 93750, description: 'SME Credit Facility · Monthly repayment', status: 'Paid' },
-  { date: '30 Jul 2026', amount: 93750, description: 'SME Credit Facility · Monthly repayment', status: 'Paid' },
+  { date: DASHBOARD_ACCOUNT.nextRepaymentDate, amount: DASHBOARD_ACCOUNT.repaymentAmount, description: `${DASHBOARD_ACCOUNT.productName} · Monthly repayment`, status: 'Due soon' },
+  { date: '30 Aug 2026', amount: DASHBOARD_ACCOUNT.repaymentAmount, description: `${DASHBOARD_ACCOUNT.productName} · Monthly repayment`, status: 'Paid' },
+  { date: '30 Jul 2026', amount: DASHBOARD_ACCOUNT.repaymentAmount, description: `${DASHBOARD_ACCOUNT.productName} · Monthly repayment`, status: 'Paid' },
 ];
 
 export default function PaymentsPage() {
@@ -26,8 +27,8 @@ export default function PaymentsPage() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        <article className="rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 p-5 text-white shadow-[0_16px_34px_rgba(37,99,235,.18)] sm:p-6"><div className="flex items-center justify-between"><p className="text-sm font-medium text-blue-100">Next repayment</p><CalendarDays className="h-5 w-5 text-blue-100" /></div><p className="mt-5 text-3xl font-semibold tabular-nums">{formatNaira(93750)}</p><p className="mt-2 text-xs text-blue-100">Due 30 September 2026</p><button type="button" onClick={() => setMessage('Demo only: payment processing is not connected yet.')} className="mt-5 inline-flex min-h-10 items-center gap-2 rounded-lg bg-white px-4 text-sm font-semibold text-blue-700 transition hover:bg-blue-50">Make a payment <ArrowRight className="h-4 w-4" /></button></article>
-        <article className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-[#111b2e] sm:p-6"><div className="flex items-center justify-between"><p className="text-sm font-medium text-slate-500 dark:text-slate-400">Paid this year</p><span className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"><Check className="h-5 w-5" /></span></div><p className="mt-5 text-3xl font-semibold tabular-nums text-[#14233c] dark:text-white">{formatNaira(562500)}</p><p className="mt-2 text-xs text-slate-500 dark:text-slate-400">6 scheduled repayments recorded</p></article>
+        <article className="rounded-xl bg-gradient-to-br from-blue-600 to-blue-800 p-5 text-white shadow-[0_16px_34px_rgba(37,99,235,.18)] sm:p-6"><div className="flex items-center justify-between"><p className="text-sm font-medium text-blue-100">Next repayment</p><CalendarDays className="h-5 w-5 text-blue-100" /></div><p className="mt-5 text-3xl font-semibold tabular-nums">{formatNaira(DASHBOARD_ACCOUNT.repaymentAmount)}</p><p className="mt-2 text-xs text-blue-100">Due {DASHBOARD_ACCOUNT.nextRepaymentDate}</p><button type="button" onClick={() => setMessage('Demo only: payment processing is not connected yet.')} className="mt-5 inline-flex min-h-10 items-center gap-2 rounded-lg bg-white px-4 text-sm font-semibold text-blue-700 transition hover:bg-blue-50">Make a payment <ArrowRight className="h-4 w-4" /></button></article>
+        <article className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-[#111b2e] sm:p-6"><div className="flex items-center justify-between"><p className="text-sm font-medium text-slate-500 dark:text-slate-400">Paid toward this facility</p><span className="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300"><Check className="h-5 w-5" /></span></div><p className="mt-5 text-3xl font-semibold tabular-nums text-[#14233c] dark:text-white">{formatNaira(DASHBOARD_ACCOUNT.originalAmount - DASHBOARD_ACCOUNT.outstandingBalance)}</p><p className="mt-2 text-xs text-slate-500 dark:text-slate-400">{DASHBOARD_ACCOUNT.repaymentsPaid} of {DASHBOARD_ACCOUNT.repaymentCount} scheduled repayments recorded</p></article>
         <article className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-[#111b2e] sm:p-6"><div className="flex items-center justify-between"><p className="text-sm font-medium text-slate-500 dark:text-slate-400">Payment method</p><WalletCards className="h-5 w-5 text-blue-600 dark:text-blue-300" /></div><p className="mt-5 text-lg font-semibold text-[#14233c] dark:text-white">Bank transfer</p><p className="mt-2 text-xs text-slate-500 dark:text-slate-400">Payment instructions are provided with your facility.</p></article>
       </div>
 

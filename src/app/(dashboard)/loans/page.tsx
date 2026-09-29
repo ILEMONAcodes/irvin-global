@@ -3,13 +3,14 @@
 import { useState } from 'react';
 import { ArrowDownToLine, Check, Clock3, FileText } from 'lucide-react';
 import { formatNaira } from '@/lib/utils';
+import { DASHBOARD_ACCOUNT } from '@/data/dashboardAccount';
 
 type LoanTab = 'schedule' | 'history' | 'documents';
 const schedule = [
-  { dueDate: '30 Aug 2026', amount: 125000, status: 'Paid' },
-  { dueDate: '30 Sep 2026', amount: 125000, status: 'Paid' },
-  { dueDate: '30 Oct 2026', amount: 125000, status: 'Upcoming' },
-  { dueDate: '30 Nov 2026', amount: 125000, status: 'Upcoming' },
+  { dueDate: '30 Jul 2026', amount: DASHBOARD_ACCOUNT.repaymentAmount, status: 'Paid' },
+  { dueDate: '30 Aug 2026', amount: DASHBOARD_ACCOUNT.repaymentAmount, status: 'Paid' },
+  { dueDate: DASHBOARD_ACCOUNT.nextRepaymentDate, amount: DASHBOARD_ACCOUNT.repaymentAmount, status: 'Upcoming' },
+  { dueDate: '30 Oct 2026', amount: DASHBOARD_ACCOUNT.repaymentAmount, status: 'Upcoming' },
 ];
 
 export default function LoanDetailsPage() {
@@ -23,7 +24,7 @@ export default function LoanDetailsPage() {
             <h1 className="text-2xl font-semibold text-[#14233c] dark:text-white">SME Loan</h1>
             <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">Active</span>
           </div>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Facility #IG-11234 · Disbursed 30 June 2026</p>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Facility #{DASHBOARD_ACCOUNT.facilityId} · Disbursed 30 June 2026</p>
         </div>
         <button className="inline-flex items-center gap-2 self-start rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-blue-50 dark:border-slate-700 dark:bg-[#111b2e] dark:text-slate-200 dark:hover:bg-slate-800">
           <ArrowDownToLine className="h-4 w-4" /> Download statement
@@ -32,18 +33,18 @@ export default function LoanDetailsPage() {
       <section className="grid gap-4 md:grid-cols-2">
         <article className="rounded-2xl bg-gradient-to-br from-blue-600 to-blue-800 p-6 text-white shadow-[0_14px_35px_rgba(37,99,235,.18)]">
           <p className="text-sm text-blue-100">Original amount</p>
-          <p className="mt-3 text-3xl font-semibold">{formatNaira(1500000)}</p>
-          <p className="mt-2 text-xs text-blue-100">SME Credit Facility</p>
+          <p className="mt-3 text-3xl font-semibold">{formatNaira(DASHBOARD_ACCOUNT.originalAmount)}</p>
+          <p className="mt-2 text-xs text-blue-100">{DASHBOARD_ACCOUNT.productName}</p>
         </article>
         <article className="rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-[#111b2e]">
           <p className="text-sm text-slate-500">Outstanding balance</p>
-          <p className="mt-3 text-3xl font-semibold text-[#14233c] dark:text-white">{formatNaira(375000)}</p>
+          <p className="mt-3 text-3xl font-semibold text-[#14233c] dark:text-white">{formatNaira(DASHBOARD_ACCOUNT.outstandingBalance)}</p>
           <div className="mt-5 flex items-center justify-between text-xs">
             <span className="text-slate-500">Repayment progress</span>
-            <strong className="text-blue-700 dark:text-blue-300">75%</strong>
+            <strong className="text-blue-700 dark:text-blue-300">{DASHBOARD_ACCOUNT.repaymentPercent}%</strong>
           </div>
           <div className="mt-2 h-2 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
-            <div className="h-full w-3/4 rounded-full bg-blue-600" />
+            <div className="h-full rounded-full bg-blue-600" style={{ width: `${DASHBOARD_ACCOUNT.repaymentPercent}%` }} />
           </div>
         </article>
       </section>

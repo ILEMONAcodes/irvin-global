@@ -2,14 +2,14 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useSyncExternalStore } from 'react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { Bell, BriefcaseBusiness, CreditCard, FileText, Headphones, LayoutDashboard, LogOut, Menu, Moon, Search, Settings, Sun, WalletCards, X } from 'lucide-react';
+import { Bell, CreditCard, FileText, Headphones, LayoutDashboard, LogOut, Menu, Moon, Search, Settings, Sun, WalletCards, X } from 'lucide-react';
+import { toggleDarkMode, useDarkMode } from '@/lib/theme';
 
 const navigation = [
   { href: '/overview', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/loans', label: 'My loans', icon: CreditCard },
-  { href: '/apply', label: 'Apply for loan', icon: BriefcaseBusiness },
   { href: '/payments', label: 'Payments', icon: WalletCards },
   { href: '/documents', label: 'Documents', icon: FileText },
   { href: '/status', label: 'Notifications', icon: Bell },
@@ -17,33 +17,13 @@ const navigation = [
   { href: '/settings', label: 'Settings', icon: Settings },
 ];
 
-const THEME_STORAGE_KEY = 'irvin-dashboard-theme';
-
-function subscribeToTheme(onStoreChange: () => void) {
-  window.addEventListener('storage', onStoreChange);
-  window.addEventListener('irvin-dashboard-theme-change', onStoreChange);
-  return () => {
-    window.removeEventListener('storage', onStoreChange);
-    window.removeEventListener('irvin-dashboard-theme-change', onStoreChange);
-  };
-}
-
-function getThemeSnapshot() {
-  return window.localStorage.getItem(THEME_STORAGE_KEY) === 'dark';
-}
-
-function getServerThemeSnapshot() {
-  return false;
-}
-
 export default function DashboardShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const darkMode = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, getServerThemeSnapshot);
+  const darkMode = useDarkMode();
 
   function toggleTheme() {
-    window.localStorage.setItem(THEME_STORAGE_KEY, darkMode ? 'light' : 'dark');
-    window.dispatchEvent(new Event('irvin-dashboard-theme-change'));
+    toggleDarkMode(darkMode);
   }
 
   return (

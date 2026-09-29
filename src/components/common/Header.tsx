@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, Menu, X } from 'lucide-react';
+import ThemeToggle from '@/components/common/ThemeToggle';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -23,6 +24,7 @@ export default function Header() {
           <Link href="/#contact" className="text-sm font-medium text-slate-600 transition hover:text-blue-700">Contact</Link>
         </nav>
         <div className="hidden items-center gap-5 lg:flex">
+          <ThemeToggle compact />
           <label className="sr-only" htmlFor="language">Language</label>
           <select id="language" defaultValue="en" aria-label="Language" className="cursor-pointer border-0 bg-transparent text-sm font-semibold text-slate-600 outline-none">
             <option value="en">EN</option>
@@ -40,6 +42,7 @@ export default function Header() {
             {[
               ['Loans', '/products'], ['About us', '/#about'], ['How it works', '/#how-it-works'], ['FAQ', '/#faq'], ['Contact', '/#contact'], ['Log in', '/login'],
             ].map(([label, href]) => <Link key={label} href={href} onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-blue-50">{label}</Link>)}
+            <div className="px-3 py-2"><ThemeToggle /></div>
             <Link href="/apply" onClick={() => setMobileMenuOpen(false)} className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-4 py-3 text-sm font-semibold text-white">Apply for a loan <ArrowRight className="h-4 w-4" /></Link>
           </div>
         </motion.nav>}

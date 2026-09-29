@@ -17,21 +17,21 @@ export default function Footer() {
         <div>
           <h2 className="mb-4 font-bold uppercase tracking-wider text-white">Financing</h2>
           <ul className="space-y-3">
-            <li><Link href="/products" className="hover:text-[#D4AF37]">Payday Credit Facility</Link></li>
-            <li><Link href="/products" className="hover:text-[#D4AF37]">Payroll Credit Facility</Link></li>
-            <li><Link href="/products" className="hover:text-[#D4AF37]">Step-Up Loan</Link></li>
-            <li><Link href="/products" className="hover:text-[#D4AF37]">SME Loan</Link></li>
-            <li><Link href="/calculator" className="hover:text-[#D4AF37]">Loan calculator</Link></li>
+            <li><Link href="/products" className="transition hover:text-blue-300">Payday Credit Facility</Link></li>
+            <li><Link href="/products" className="transition hover:text-blue-300">Payroll Credit Facility</Link></li>
+            <li><Link href="/products" className="transition hover:text-blue-300">Step-Up Loan</Link></li>
+            <li><Link href="/products" className="transition hover:text-blue-300">SME Loan</Link></li>
+            <li><Link href="/calculator" className="transition hover:text-blue-300">Loan calculator</Link></li>
           </ul>
         </div>
 
         <div>
           <h2 className="mb-4 font-bold uppercase tracking-wider text-white">Explore</h2>
           <ul className="space-y-3">
-            <li><Link href="/overview" className="hover:text-[#D4AF37]">Customer portal</Link></li>
-            <li><Link href="/branches" className="hover:text-[#D4AF37]">Branch network</Link></li>
-            <li><Link href="/products" className="hover:text-[#D4AF37]">Our services</Link></li>
-            <li><Link href="/status" className="hover:text-[#D4AF37]">Track application</Link></li>
+            <li><Link href="/overview" className="transition hover:text-blue-300">Customer portal</Link></li>
+            <li><Link href="/branches" className="transition hover:text-blue-300">Branch network</Link></li>
+            <li><Link href="/products" className="transition hover:text-blue-300">Our services</Link></li>
+            <li><Link href="/status" className="transition hover:text-blue-300">Track application</Link></li>
           </ul>
         </div>
 
@@ -39,7 +39,7 @@ export default function Footer() {
           <h2 className="mb-4 font-bold uppercase tracking-wider text-white">Head office</h2>
           <ul className="space-y-3">
             <li className="flex items-start gap-2">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#D4AF37]" />
+              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-blue-300" />
               <span>No 33, Pope John Paul Street, off Gana Street, Maitama, Abuja</span>
             </li>
             <li className="flex items-center gap-2">
@@ -47,7 +47,7 @@ export default function Footer() {
               <span className="font-bold text-white">+234 907 821 6588</span>
             </li>
             <li className="flex items-center gap-2">
-              <Mail className="h-4 w-4 shrink-0 text-[#D4AF37]" />
+              <Mail className="h-4 w-4 shrink-0 text-blue-300" />
               <span>info@irvinglobal.com</span>
             </li>
           </ul>

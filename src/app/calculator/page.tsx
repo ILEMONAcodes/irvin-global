@@ -9,8 +9,8 @@ export default function CalculatorPage() {
       <Header />
       <main className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
         <div className="mb-9 max-w-2xl">
-          <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[.16em] text-[#99751d]"><Calculator className="h-4 w-4" />Plan with clarity</p>
-          <h1 className="mt-3 text-3xl font-semibold text-[#0B132B] sm:text-4xl">Plan your repayment.</h1>
+          <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[.16em] text-blue-700"><Calculator className="h-4 w-4" />Plan with clarity</p>
+          <h1 className="mt-3 text-3xl font-semibold text-[#14233c] sm:text-4xl">Plan your repayment.</h1>
           <p className="mt-3 leading-7 text-slate-600">Get an estimate of your monthly repayment and total cost before you apply.</p>
         </div>
         <LoanCalculator />

@@ -19,6 +19,7 @@ import {
   UserRound,
   LoaderCircle,
 } from 'lucide-react';
+import ThemeToggle from '@/components/common/ThemeToggle';
 
 type LoginMode = 'contact' | 'borrower';
 
@@ -40,6 +41,7 @@ export default function LoginPage() {
 
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#f8fafc_0%,#f1f5f9_55%,#eff6ff_100%)] px-4 py-5 sm:px-6 sm:py-8">
+      <div className="absolute right-4 top-4 z-20 sm:right-8 sm:top-8"><ThemeToggle compact /></div>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-60" style={{ backgroundImage: 'radial-gradient(ellipse at 12% 14%, rgba(191,219,254,.55), transparent 35%), radial-gradient(ellipse at 90% 88%, rgba(219,234,254,.65), transparent 34%)' }} />
       <section className="relative mx-auto grid w-full max-w-[1380px] overflow-hidden rounded-[28px] border border-white/80 bg-white shadow-[0_28px_90px_rgba(15,23,42,.10)] lg:min-h-[820px] lg:grid-cols-[.96fr_1.04fr] lg:rounded-[32px]">
         <aside className="relative isolate overflow-hidden bg-[linear-gradient(145deg,#1d4ed8_0%,#2563eb_56%,#1e40af_100%)] px-6 py-7 text-white sm:px-10 sm:py-9 lg:px-12 lg:py-11 xl:px-16">

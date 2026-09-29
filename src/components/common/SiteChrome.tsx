@@ -15,11 +15,18 @@ const ROUTES_WITHOUT_PUBLIC_HEADER = [
   '/support',
   '/status',
 ];
+const DASHBOARD_ROUTES = ['/overview', '/investments', '/loans', '/payments', '/documents', '/settings', '/support', '/status'];
 
 export default function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const routeHasOwnHeader = ROUTES_WITH_OWN_HEADER.some((route) => pathname === route || pathname.startsWith(`${route}/`));
   const routeHidesPublicHeader = ROUTES_WITHOUT_PUBLIC_HEADER.some((route) => pathname === route || pathname.startsWith(`${route}/`));
+  const isDashboardRoute = DASHBOARD_ROUTES.some((route) => pathname === route || pathname.startsWith(`${route}/`));
 
-  return <>{!routeHasOwnHeader && !routeHidesPublicHeader && <Header />}{children}</>;
+  return (
+    <div className="contents" data-theme-scope={isDashboardRoute ? 'dashboard' : 'public'}>
+      {!routeHasOwnHeader && !routeHidesPublicHeader && <Header />}
+      {children}
+    </div>
+  );
 }
